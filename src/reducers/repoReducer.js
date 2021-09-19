@@ -4,6 +4,21 @@ const repoReducer = (state = {}, action) => {
             return {
                 state: action.payload
             }
+        case 'SHOW_LOADING':
+            return {
+                ...state,
+                loading: true
+            }
+        case 'HIDE_LOADING':
+            return {
+                ...state,
+                loading: false
+            }
+        case 'API_EXCEEDED_LIMIT':
+            return {
+                ...state,
+                message: "API has exceeded its limits for your current IP"
+            }
 
         default:
             return state;

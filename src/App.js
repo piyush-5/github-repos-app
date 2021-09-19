@@ -6,7 +6,6 @@ import Users from './components/Users';
 
 const App = () => {
   const [list, setList] = useState([]);
-  const [loading, setLoading] = useState();
   const dispatch = useDispatch();
   const state = useSelector(state => state);
 
@@ -24,20 +23,6 @@ const App = () => {
     setList(state.repos.state)
   }
 
-  const loadData = () => {
-    setLoading(true)
-    return axios
-        .get(`https://api.github.com/search/users?q=location:Bangalore&limit=10`)
-        .then(res => {
-          console.log("data loade", res);
-          setList(res.data.items);
-          setLoading(false);
-        })
-        .catch(err => {
-          console.log("ERROR", err);
-        })
-  }
-
   return (
     <>
       {/* { loading ? 
@@ -51,7 +36,7 @@ const App = () => {
       
               {list.map(repo => 
                 // <li key={repo.id}>{repo.login}</li>
-                <Users detail={repo.userDetails} />
+                <Users key={repo.id} detail={repo.userDetails} stars={repo.starredRepos}/>
               )}
             
     </>

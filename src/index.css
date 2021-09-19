@@ -12,7 +12,26 @@ code {
     monospace;
 }
 
-.border-top-bottom {
-  border-top: 1px solid #efefef;
+.border-bottom {
   border-bottom: 1px solid #efefef;
+}
+.flex-end {
+  display: flex;
+  justify-content: end;
+}
+a:link {
+  text-decoration: none;
+  color: #0862d4;
+  font-weight: 600;
+}
+a:visited {
+  text-decoration: none;
+  color: #0862d4;
+}
+.location-email {
+  opacity: 0.7;
+  font-size: 12px;
+}
+.user-bio {
+  font-size: 14px;
 }

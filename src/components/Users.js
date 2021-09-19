@@ -4,30 +4,40 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
+//import { EmailOutlinedIcon, LocationOnOutlinedIcon } from '@mui/icons-material';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 
 
-
-const Users = ({ detail }) => {
-    console.log("PROPS", detail)
+const Users = ({ detail, stars }) => {
+    console.log("PROPS", stars.length)
     return (
         <>
-            <div className="border-top-bottom">
+            {/*<div className="border-top-bottom">*/}
             <Container fixed>
-                <Box sx={{ flexGrow: 1 , padding: '10px 0px'}}>
+                <Box className="border-bottom" sx={{ flexGrow: 1 , padding: '10px 0px'}}>
                     <Grid container spacing={2}>
-                        <Grid item xs={2}>
+                        <Grid item xs={2} className="flex-end">
                             <Avatar
                                 alt={detail.name}
                                 src={detail.avatar_url}
-                                sx={{ width: 56, height: 56 }}
+                                sx={{ width: 68, height: 68 }}
                                 variant="square"
                             />
                         </Grid>
                         <Grid item xs={10}>
-                            <a href={detail.html_url} target="_blank">{detail.login}</a>
-                            <span style={{paddingLeft: '10px'}}>{detail.name}</span>
-                            <p>{detail.bio} @{detail.company}</p>
-                            <p>{detail.location} {detail.email}</p>
+                            <Stack direction="row" spacing={2}>
+                                <a href={detail.html_url} target="_blank">{detail.login}</a>
+                                <div style={{display: "inherit", fontWeight: 600}}><StarBorderOutlinedIcon fontSize="small" />{stars.length}</div>
+                                <span style={{paddingLeft: '10px'}}>{detail.name}</span>
+                            </Stack>
+                            
+                            <p className="user-bio">{detail.bio} @{detail.company}</p>
+                            <Stack className="location-email" direction="row" spacing={2}>
+                                <LocationOnOutlinedIcon fontSize="small" />{detail.location}
+                                <EmailOutlinedIcon fontSize="small" />{detail.email}
+                            </Stack>
                         </Grid>
                         <Grid spacing={2}>
                             <p></p>
@@ -35,7 +45,7 @@ const Users = ({ detail }) => {
                     </Grid>
                 </Box>
             </Container>
-            </div>
+            {/*</div>*/}
 
         </>
     )
