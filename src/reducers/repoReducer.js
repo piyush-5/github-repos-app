@@ -1,8 +1,17 @@
-const repoReducer = (state = {}, action) => {
+const initialStore = {
+    items: [],
+    loading: true,
+    message: ""
+}
+
+
+const repoReducer = (state = initialStore, action) => {
     switch(action.type){
         case 'SET_ITEMS':
             return {
-                state: action.payload
+                ...state,
+                items: action.payload,
+                loading: false
             }
         case 'SHOW_LOADING':
             return {
@@ -17,7 +26,8 @@ const repoReducer = (state = {}, action) => {
         case 'API_EXCEEDED_LIMIT':
             return {
                 ...state,
-                message: "API has exceeded its limits for your current IP"
+                loading: false,
+                message: action.payload
             }
 
         default:
